@@ -29,7 +29,9 @@ jobs:
         make # May fail with "-j" because conflicting temporary files
     - name: build-gcc
       run: FORCE_INSTALLS=1 CC65_PATH=$(pwd)/cc65/bin ./build.sh
+    - name: tar files
+      run: tar -cvf prefix.tar prefix
     - uses: actions/upload-artifact@v3
       with:
         name: gcc-6502
-        path: prefix/bin/*
+        path: prefix.tar
